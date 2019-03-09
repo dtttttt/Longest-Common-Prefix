@@ -1,13 +1,16 @@
-if (strs.empty())
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+    if (strs.empty())
 			return "";
-	for (int i = 0; i < strs[0].length(); i++)
+    sort(strs.begin(), strs.end());
+	int len = std::min(strs[0].length(), strs.back().length());
+	for (int i = 0; i < len; i++)
 	{
-		for (int j = 0; j < strs.size(); j++)
-		{
-			if (i >= strs[j].length()||strs[0][i]!=strs[j][i])
-			{
-				return strs[0].substr(0, i);
-			}
-		}
+		if (i>=len || strs[0][i] != strs.back()[i])
+			return strs[0].substr(0, i);
+		
 	}
 	return strs[0];
+    }
+};
